@@ -19,7 +19,7 @@ struct ProfileView: View {
             ZStack{
                 
                 //Color.cyan.ignoresSafeArea()
-                
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 VStack{
                     
                     
@@ -38,7 +38,7 @@ struct ProfileView: View {
                             .position(x: 180, y: -220)
                     
                 }.padding()
-                
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     VStack{
                         
                         // The actual progress bar needs functions which track when the user completes the steps and upates the bar so it fills up to completion
@@ -46,18 +46,39 @@ struct ProfileView: View {
                         ProgressBar(value:$progressValue).frame(height: 20.0)
                             .position(x: 180, y: 130)
                         
+                        var rawProgress: Float = progressValue * 5
+                        var formatted = NSNumber(value: rawProgress).stringValue
                         
-                        
-                        Text("Progress 0/5")
+                        if (progressValue == 1 ){
+                            Text("Complete!")
+                                .position(x: 180, y: -150)
+                        }
+                        else{
+                        Text("Progress \(formatted)/5")
                             .position(x: 180, y: -150)
-                        
+                        }
                         //The progess bar Text below needs to be updated each time the user completes the required steps, a variable must be introduced which counts up +1 when what is stated above is done
                             
                             
-                    }.padding()
+                        }.padding()
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    VStack{
+                        HStack{
+                            Text("Place")
+                            Text("Holder")
+                        }
+                        HStack{
+                            Text("Place")
+                            Text("Holder")
+                        }
+                }
                 }
             }
         }
+    
+    func moreProgress() {
+        self.progressValue += 0.20
+    }
     }
 
 struct ProfileView_Previews: PreviewProvider {
