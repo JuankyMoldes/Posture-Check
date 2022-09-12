@@ -16,6 +16,7 @@ struct ProfileView: View {
     @State var progressValue: Float = 0.0
     var body: some View {
         NavigationView {
+            ScrollView{ // ScrollView changes where things are positioned after being implemented after NavigationView
             ZStack{
                 
                 //Color.cyan.ignoresSafeArea()
@@ -35,7 +36,7 @@ struct ProfileView: View {
                     
                         Divider()
                         .background(Color.black)
-                            .position(x: 180, y: -220)
+                            .position(x: 180, y: -80)
                     
                 }.padding()
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,37 +45,76 @@ struct ProfileView: View {
                         // The actual progress bar needs functions which track when the user completes the steps and upates the bar so it fills up to completion
                         
                         ProgressBar(value:$progressValue).frame(height: 20.0)
-                            .position(x: 180, y: 130)
+                            .position(x: 180, y: 150)
+                            
+                        
+                        // This code below requires testing, I am unsure whether it will run as intended once most of the application features are implemented
+                        // Although the IDE recommends this to be a constant variable, the variable (progressValue) should be changing once the user completes the questionnaires
+                        // Hence, it will not be a constant variable in that context
                         
                         var rawProgress: Float = progressValue * 5
                         var formatted = NSNumber(value: rawProgress).stringValue
                         
-                        if (progressValue == 1 ){
+                        if (progressValue >= 1 ){
                             Text("Complete!")
-                                .position(x: 180, y: -150)
+                                .position(x: 180, y: 30)
                         }
                         else{
                         Text("Progress \(formatted)/5")
-                            .position(x: 180, y: -150)
+                            .position(x: 180, y: 30)
                         }
-                        //The progess bar Text below needs to be updated each time the user completes the required steps, a variable must be introduced which counts up +1 when what is stated above is done
                             
                             
-                        }.padding()
+                    }.padding()
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     VStack{
                         HStack{
-                            Text("Place")
-                            Text("Holder")
-                        }
+                            Image("B)2. Chin tuck icon")
+                                .resizable()
+                                .clipShape(Circle())
+                                .shadow(radius: 10)
+                                .overlay(Circle().stroke(Color.yellow, lineWidth: 5))
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 275)
+                                .position(x: 90, y: 340)
+    
+                            Image("B)2. Chin tuck icon")
+                                .resizable()
+                                .clipShape(Circle())
+                                .shadow(radius: 10)
+                                .overlay(Circle().stroke(Color.yellow, lineWidth: 5))
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 275)
+                                .position(x: 90, y: 340)
+                            
+                            
+                        }.padding()
+                        
                         HStack{
-                            Text("Place")
-                            Text("Holder")
-                        }
+                            Image("B)2. Chin tuck icon")
+                                .resizable()
+                                .clipShape(Circle())
+                                .shadow(radius: 10)
+                                .overlay(Circle().stroke(Color.yellow, lineWidth: 5))
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 275)
+                                .position(x: 90, y: 340)
+    
+                            Image("B)2. Chin tuck icon")
+                                .resizable()
+                                .clipShape(Circle())
+                                .shadow(radius: 10)
+                                .overlay(Circle().stroke(Color.yellow, lineWidth: 5))
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 275)
+                                .position(x: 90, y: 340)
+                        }.padding()
+                        
                 }
                 }
             }
         }
+    }
     
     func moreProgress() {
         self.progressValue += 0.20
